@@ -2,7 +2,7 @@
 
 export const newGame = async (game_token) => {
   try {
-  const response = await fetch("http://127.0.0.1:5000/new_game", {
+  const response = await fetch("https://shivamycode.pythonanywhere.com/new_game", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export const newGame = async (game_token) => {
 
 export const makeMove = async (index,game_token) => {
   try {
-    const response = await fetch("http://127.0.0.1:5000/move", {
+    const response = await fetch("https://shivamycode.pythonanywhere.com/move", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
