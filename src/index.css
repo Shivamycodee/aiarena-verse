@@ -1,0 +1,138 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: linear-gradient(to bottom, #ffcbff,#c1d2dc);
+  background-color: linear-gradient(to bottom, #d22bd2,#000000);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+.navbar-comp{
+  margin:1%;
+  padding-top:150px;
+  border-radius:10px;
+}
+
+
+#full-body{
+  min-height: 100vh;
+}
+
+  /* card css */
+
+
+  .card {
+  margin: 20px;
+  padding: 20px;
+  width: 300px;
+  min-height: 200px;
+  display: grid;
+  grid-template-rows: 20px 50px 1fr 50px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+}
+
+.card__link,
+.card__exit,
+.card__icon {
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card__link::after {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: all 0.5s;
+}
+
+.card__link:hover::after {
+  width: 100%;
+}
+
+.text {
+  color: white;
+}
+
+.card__exit {
+  grid-row: 1/2;
+  justify-self: end;
+}
+
+.card__icon {
+  grid-row: 2/3;
+  font-size: 25px;
+}
+
+.card__title {
+  grid-row: 3/4;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.card__apply {
+  grid-row: 4/5;
+}
+
+.card__apply Button{
+  width:100%;
+}
+
+.card__apply #deposit-button{
+  margin: 5% 0% 2% 0%;
+}
+
+.card-5 {
+  background: radial-gradient(#f588d8, #c0a3e5);
+}
+
+@media (max-width: 1600px) {
+  .cards {
+    justify-content: center;
+  }
+}
+
+.icon-badge{
+  min-width: 100%;
+  margin-bottom: 2%;
+}
+
+  /* chessboard */
+
+
+#basicBoard-cont{
+width: 41%;
+margin:0 1%;
+}
+
+#chess-container{
+  display: flex;
+}
+
+#chess-piecesHolder{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 5%;
+
+}

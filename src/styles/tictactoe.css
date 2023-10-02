@@ -1,0 +1,40 @@
+.title, .next-player, .winner {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+}
+
+.border-right {
+  border-right: 4px solid black;
+}
+
+
+.border-bottom {
+  border-bottom: 4px solid black;
+}
+
+.content {
+  line-height: 100px;
+  font-size: 32px;
+}
+
+
+.winning-pattern {
+  color: green;
+  font-weight: bold;
+}
