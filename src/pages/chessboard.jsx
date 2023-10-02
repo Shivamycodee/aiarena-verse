@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
-import { makeChessMove, GameEnd } from "../api/move";
+import { makeChessMove, boardReset } from "../api/move";
 import Button from "react-bootstrap/Button";
 import Piece from "../assets/transferPiece";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ChessBoard() {
 
   const [game, setGame] = useState(new Chess());
   const [deadPiece,setDeadPiece] = useState([]); // [ {color: "w", type: "p"}, {color: "b", type: "p"}
+  const [chessToken,setChessToken] = useState(null);
 
   function makeAMove(move) {
     const result = game.move(move);
@@ -29,7 +31,6 @@ export default function ChessBoard() {
     if (isMoveLegal) {
       makeAMove({ from: sourceSquare, to: targetSquare });
       getCapturedPieces();
-      console.info(deadPiece)
     } else {
       console.log("Move is not legal!",move);
     }
@@ -41,6 +42,7 @@ export default function ChessBoard() {
 
     if (game.isCheckmate()) {
       alert(game.turn() === "w" ? "Black wins!" : "White wins!");
+      setChessToken(null);
       ResetChess();
       return true; // End the function if the game is over
     }
@@ -95,7 +97,8 @@ export default function ChessBoard() {
     }
 
     const move = makeAMove(moveObj);
-    const MoveAI = await makeChessMove(`${sourceSquare}${targetSquare}`);
+    console.info("⚠️⚠️",chessToken)
+    const MoveAI = await makeChessMove(`${sourceSquare}${targetSquare}`,chessToken);
     checkIfGameOver(); // check for win...
 
     HandleMoveAI(MoveAI);
@@ -109,23 +112,27 @@ export default function ChessBoard() {
 useEffect(() => {
   window.addEventListener("beforeunload", handleBeforeUnload);
   return () => {
-    window.removeEventListener("beforeunload", handleBeforeUnload);
+  window.removeEventListener("beforeunload", handleBeforeUnload);
   };
 }, []);
+
+useEffect(()=>{
+  const token = uuidv4();
+  boardReset(chessToken,token);
+  setChessToken(token);
+},[])
 
 const handleBeforeUnload = async (e) => {
   e.preventDefault();
   e.returnValue =
     "All your data will be lost. Do you still want to close the window?";     
-        
-    const msg = await GameEnd();
-    console.log(msg.message);
-
 };
 
 const ResetChess =  async() => {
   setGame(new Chess());
-  const msg = await GameEnd();
+  const token = uuidv4();
+  const msg = await boardReset(chessToken,token);
+  setChessToken(token);
   console.log(msg.message);
   setDeadPiece([])
 }
@@ -155,7 +162,7 @@ const ResetChess =  async() => {
           )}
         </Button>
 
-        <Button variant="outline-secondary" size="lg" onClick={ResetChess}>
+        <Button variant="outline-secondary" size="lg" onClick={()=>ResetChess()}>
           Restart
         </Button>
 

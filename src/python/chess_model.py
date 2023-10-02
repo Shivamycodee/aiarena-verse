@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import chess
 import tensorflow as tf
 import numpy as np
-from flask_cors import CORS
 
 
 
