@@ -13,7 +13,7 @@ const ParallaxTiltEffect = () => {
     return (
       <>
         <div className="card-container">
-          <div onClick={() => navigate("/humanvsai")} className="card">
+          <div onClick={() => navigate("/humanWithAi")} className="card">
             <Lottie
               style={{ width: "250px", height: "250px" }}
               animationData={humanVsRobot}

@@ -21,7 +21,7 @@ function App() {
     <div id="full-body">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} /> {/* Use Home here */}
+          <Route path="/" element={<Home />} /> 
           <Route path="humanWithAi/tictactoe" element={<TicTacToe />} />
           <Route path="humanWithAi/chessboard" element={<Chess />} />
           <Route path="humanWithAi" element={<HumanWithAI />} />
