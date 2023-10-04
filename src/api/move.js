@@ -3,7 +3,7 @@
 export const newGame = async (game_token) => {
   try {
     const response = await fetch(
-      "http://shivamycode.pythonanywhere.com/new_game",
+      "https://shivamycode.pythonanywhere.com/new_game",
       {
         method: "POST",
         headers: {
@@ -28,7 +28,7 @@ export const newGame = async (game_token) => {
 
 export const makeMove = async (index, game_token) => {
   try {
-    const response = await fetch("http://shivamycode.pythonanywhere.com/move", {
+    const response = await fetch("https://shivamycode.pythonanywhere.com/move", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
