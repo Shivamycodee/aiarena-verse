@@ -1,11 +1,11 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
 import TicTacToe from './tictactoe'
 import Chess from './chessboard'
 import "../index.css";
 import Parallax from "../components/parallax";
-import AiVsAi from './aivsai';
 import HumanVsAi from './humanVsAi';
+import AiVsAi from './aivsai';
 import NoPage from './nopage';
 
 function Home() {

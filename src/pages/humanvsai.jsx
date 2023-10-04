@@ -1,7 +1,7 @@
 import React from "react";
 import Lottie from "lottie-react";
 import animationData from "../assets/tic-tac-toe.json";
-import humanVsAiAsset from "../assets/human-vs-ai.json";
+import humanVsAiAsset from "../assets/humanandai.json";
 import { useNavigate } from "react-router-dom";
 
 
