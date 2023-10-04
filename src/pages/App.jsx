@@ -4,7 +4,7 @@ import TicTacToe from './tictactoe'
 import Chess from './chessboard'
 import "../index.css";
 import Parallax from "../components/parallax";
-import HumanVsAi from './humanVsAi';
+import HumanWithAI from './humanWithAi';
 import AiVsAi from './aivsai';
 import NoPage from './nopage';
 
@@ -22,9 +22,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} /> {/* Use Home here */}
-          <Route path="humanvsai/tictactoe" element={<TicTacToe />} />
-          <Route path="humanvsai/chessboard" element={<Chess />} />
-          <Route path="humanVsAi" element={<HumanVsAi />} />
+          <Route path="humanWithAi/tictactoe" element={<TicTacToe />} />
+          <Route path="humanWithAi/chessboard" element={<Chess />} />
+          <Route path="humanWithAi" element={<HumanWithAI />} />
           <Route path="aivsai" element={<AiVsAi />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
