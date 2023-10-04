@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Home />} /> {/* Use Home here */}
           <Route path="humanvsai/tictactoe" element={<TicTacToe />} />
           <Route path="humanvsai/chessboard" element={<Chess />} />
-          <Route path="humanvsai" element={<HumanVsAi />} />
+          <Route path="humanVsAi" element={<HumanVsAi />} />
           <Route path="aivsai" element={<AiVsAi />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
