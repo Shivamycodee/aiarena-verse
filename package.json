@@ -1,5 +1,5 @@
 {
-  "name": "oxchallange",
+  "name": "aiarena-verse",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "dev:oxchallange": "cd src/python && python app.py",
     "dev:chessCode": "cd src/python && python chess_model.py",
     "dev:games": "cd src/python && python games.py",
-    "dev": "concurrently \"npm run dev:frontend\" ",
+    "dev": "npm run dev:frontend\" ",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
