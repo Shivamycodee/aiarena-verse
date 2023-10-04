@@ -13,24 +13,6 @@ const ParallaxTiltEffect = () => {
     return (
       <>
         <div className="card-container">
-          {/* <div onClick={() => navigate("/tictactoe")} className="card">
-            <Lottie
-              style={{ width: "250px", height: "250px" }}
-              animationData={animationData}
-            />
-            <div className="card_title title-white">
-              <p>Tic Tac Toe</p>
-            </div>
-          </div>
-          <div onClick={() => navigate("/chessboard")} className="card">
-            <Lottie
-              style={{ width: "250px", height: "250px" }}
-              animationData={humanVsAi}
-            />
-            <div className="card_title title-white">
-              <p>Chess</p>
-            </div>
-          </div> */}
           <div onClick={() => navigate("/humanvsai")} className="card">
             <Lottie
               style={{ width: "250px", height: "250px" }}
