@@ -1,8 +1,7 @@
 import React from "react";
-// import "../styles/parallax.css";
 import Lottie from "lottie-react";
 import animationData from "../assets/tic-tac-toe.json";
-import humanVsAi from "../assets/human-vs-ai.json";
+import humanVsAiAsset from "../assets/human-vs-ai.json";
 import { useNavigate } from "react-router-dom";
 
 
@@ -26,7 +25,7 @@ function HumanVsAi() {
         <div onClick={() => navigate("chessboard")} className="card">
           <Lottie
             style={{ width: "250px", height: "250px" }}
-            animationData={humanVsAi}
+            animationData={humanVsAiAsset}
           />
           <div className="card_title title-white">
             <p>Chess</p>
