@@ -1,9 +1,16 @@
 import React from 'react'
+import Lottie from "lottie-react";
+import CommingSoon from '../assets/comming-soon.json'
 
 function AiVsAi() {
   return (
-    <div>AiVsAi</div>
-  )
+    <>
+      <Lottie
+        style={{ width: "40%",margin:"auto" }}
+        animationData={CommingSoon}
+      />
+    </>
+  );
 }
 
 export default AiVsAi
