@@ -66,6 +66,12 @@ def predict_with_tflite(input_data):
     return prediction
 
 
+@app.route('/')
+def index():
+    return "It's working!"
+
+
+
 @app.route("/board_reset", methods=["POST", "OPTIONS"])
 def board_reset():
     if request.method == "OPTIONS":

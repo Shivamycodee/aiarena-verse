@@ -54,7 +54,7 @@ export const makeMove = async (index, game_token) => {
 
 export const makeChessMove = async (move, game_token) => {
   try {
-    const response = await fetch("http://aiarena-games-api.duckdns.org/make_move", {
+    const response = await fetch("https://aiarena-games-api.duckdns.org/make_move", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export const makeChessMove = async (move, game_token) => {
 
 export const boardReset = async (old_game_token, game_token) => {
   try {
-    const response = await fetch("http://aiarena-games-api.duckdns.org/board_reset", {
+    const response = await fetch("https://aiarena-games-api.duckdns.org/board_reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
