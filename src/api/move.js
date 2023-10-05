@@ -28,13 +28,16 @@ export const newGame = async (game_token) => {
 
 export const makeMove = async (index, game_token) => {
   try {
-    const response = await fetch("https://shivamycode.pythonanywhere.com/move", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ index: index, game_token: game_token }),
-    });
+    const response = await fetch(
+      "https://shivamycode.pythonanywhere.com/move",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ index: index, game_token: game_token }),
+      }
+    );
 
     if (response.ok) {
       const data = await response.json();
@@ -51,16 +54,13 @@ export const makeMove = async (index, game_token) => {
 
 export const makeChessMove = async (move, game_token) => {
   try {
-    const response = await fetch(
-      "http://ec2-51-20-83-57.eu-north-1.compute.amazonaws.com:5000/make_move",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ move: move, game_token: game_token }),
-      }
-    );
+    const response = await fetch("https://aiarena-verse-api.ddns.net/make_move", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ move: move, game_token: game_token }),
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -74,20 +74,17 @@ export const makeChessMove = async (move, game_token) => {
 
 export const boardReset = async (old_game_token, game_token) => {
   try {
-    // http://ec2-51-20-83-57.eu-north-1.compute.amazonaws.com:5000
-    const response = await fetch(
-      "http://ec2-51-20-83-57.eu-north-1.compute.amazonaws.com:5000/board_reset",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          game_token: game_token,
-          old_game_token: old_game_token,
-        }),
-      }
-    );
+    // 13.127.241.99
+    const response = await fetch("https://aiarena-verse-api.ddns.net/board_reset", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        game_token: game_token,
+        old_game_token: old_game_token,
+      }),
+    });
 
     if (response.ok) {
       const data = await response.json();
