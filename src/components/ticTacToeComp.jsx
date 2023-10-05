@@ -26,7 +26,7 @@ const renderSquare = (index) => (
       ${index === 6 || index === 7 || index === 8 ? "" : "border-bottom"}
       ${winningPattern && winningPattern.includes(index) ? "winning-pattern" : ""}`}
 
-    onClick={handleClick.bind(this, index)}
+    onClick={board[index] == null ? handleClick.bind(this, index): null}
   >
     <div className="content">{board[index]}</div>
   </Col>
