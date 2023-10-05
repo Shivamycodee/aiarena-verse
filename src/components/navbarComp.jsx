@@ -22,7 +22,12 @@ function NavbarComp() {
 
   return (
     <>
-      <Navbar bg="dark" style={{boxShadow:"0px -20px 40px 0px #4c67aa"}} data-bs-theme="dark" className="navbar-comp">
+      <Navbar
+        bg="dark"
+        style={{ boxShadow: "0px -20px 40px 0px #4c67aa" }}
+        data-bs-theme="dark"
+        className="navbar-comp"
+      >
         <Container>
           <Navbar.Brand href="/" style={{ fontSize: 32 }}>
             <img
@@ -42,12 +47,7 @@ function NavbarComp() {
           onClick={handleShow}
           className="me-2"
         >
-          <img
-            alt=""
-            src={UserButton}
-            width="50"
-            height="50"
-          />
+          <img alt="" src={UserButton} width="50" height="50" />
         </Button>
       </Navbar>
 
@@ -90,22 +90,17 @@ function NavbarComp() {
               </Badge>
             </div>
 
-            <div className="text">
-              {/* Ut aliquip ex ea commodo consequat. Duis aute irure dolor */}
-            </div>
+            <div className="text"></div>
             <p className="card__apply">
-              {/* <a className="card__link" href="#">
-                Deposit
-              </a> */}
-
-              <Button
-                onClick={()=>Deposit()}
+             {address ? <><Button
+                onClick={() => Deposit()}
                 id="deposit-button"
                 variant="outline-dark"
               >
                 Deposit
-              </Button>
-              <Button onClick={()=>Claim()} variant="outline-dark">Withdraw</Button>
+              </Button><Button onClick={() => Claim()} variant="outline-dark">
+                  Withdraw
+                </Button></>: null}
             </p>
           </div>
         </Offcanvas.Body>
