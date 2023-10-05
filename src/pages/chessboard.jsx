@@ -166,7 +166,7 @@ const ResetChess =  async() => {
           Restart
         </Button>
 
-        <Button size="lg" style={{ margin: "0" }} variant="light">
+        <Button size="lg" variant="light">
           {deadPiece.length !== 0 ? (
             deadPiece.map(
               (piece, index) =>

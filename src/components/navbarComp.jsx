@@ -62,47 +62,50 @@ function NavbarComp() {
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <code>User Detail</code>
+            <code style={{color:"black"}}>User Detail</code>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <img alt="" src={User} width="90%" height="40%" />
-          <div
-            style={{ minHeight: "50%", minWidth: "87%" }}
-            className="card card-5"
-          >
-            <div className="card__icon">
-              <Badge className="icon-badge" bg="black">
-                Address:{" "}
-                {address
-                  ? address.slice(0, 4) + "..." + address.slice(38)
-                  : null}
-              </Badge>
-
-              <Badge className="icon-badge" bg="black">
-                Tickets: {tickets}
-              </Badge>
-              <Badge className="icon-badge" bg="black">
-                Deposited: {deposited}
-              </Badge>
-              <Badge className="icon-badge" bg="black">
-                Balance: {withdrawableBalance}
-              </Badge>
-            </div>
-
-            <div className="text"></div>
-            <p className="card__apply">
-             {address ? <><Button
-                onClick={() => Deposit()}
-                id="deposit-button"
-                variant="outline-dark"
+          {address ? (
+            <>
+              <div
+                style={{ minHeight: "50%", minWidth: "87%" }}
+                className="card card-5"
               >
-                Deposit
-              </Button><Button onClick={() => Claim()} variant="outline-dark">
-                  Withdraw
-                </Button></>: null}
-            </p>
-          </div>
+                <div className="card__icon">
+                  <Badge className="icon-badge" bg="black">
+                    address.slice(0, 4) + "..." + address.slice(38)
+                  </Badge>
+
+                  <Badge className="icon-badge" bg="black">
+                    Tickets: {tickets}
+                  </Badge>
+                  <Badge className="icon-badge" bg="black">
+                    Deposited: {deposited}
+                  </Badge>
+                  <Badge className="icon-badge" bg="black">
+                    Balance: {withdrawableBalance}
+                  </Badge>
+                </div>
+
+                <p className="card__apply">
+                  <Button
+                    onClick={() => Deposit()}
+                    id="deposit-button"
+                    variant="outline-dark"
+                  >
+                    Deposit
+                  </Button>
+                  <Button onClick={() => Claim()} variant="outline-dark">
+                    Withdraw
+                  </Button>
+                </p>
+              </div>
+            </>
+          ) : (
+            <div className="text" style={{}}>Connect Wallet</div>
+          )}
         </Offcanvas.Body>
       </Offcanvas>
     </>

@@ -2,11 +2,6 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: linear-gradient(to bottom, #ffcbff,#c1d2dc);
-  background-color: linear-gradient(to bottom, #d22bd2,#000000);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +18,7 @@
 
 
 #full-body{
-  min-height: 100vh;
+  min-height: 150vh;
 }
 
   /* card css */
@@ -71,7 +66,10 @@
 }
 
 .text {
-  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  color:black;
+  margin: 10% 0% 0% 10%;  
 }
 
 .card__exit {
@@ -119,20 +117,20 @@
 
   /* chessboard */
 
-
-#basicBoard-cont{
-width: 41%;
-margin:0 1%;
-}
-
 #chess-container{
   display: flex;
 }
 
+#basicBoard-cont{
+width: 38%;
+margin: 0 0 1% 1%;
+}
+
+
 #chess-piecesHolder{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 0 5%;
+  justify-content: space-around;
+  margin: 0 0 0 4%;
 
 }
