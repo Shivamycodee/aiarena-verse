@@ -14,6 +14,8 @@ export default function TicTacToe() {
   const [gameToken,setGameToken] = useState(null);
   const [winningPattern, setWinningPattern] = useState([]);
 
+  const [turn, setTurn] = useState(false);
+
 
 const renderSquare = (index) => (
   <Col
@@ -23,7 +25,8 @@ const renderSquare = (index) => (
     } 
       ${index === 6 || index === 7 || index === 8 ? "" : "border-bottom"}
       ${winningPattern && winningPattern.includes(index) ? "winning-pattern" : ""}`}
-    onClick={() => handleClick(index)}
+
+    onClick={handleClick.bind(this, index)}
   >
     <div className="content">{board[index]}</div>
   </Col>
@@ -35,6 +38,10 @@ const renderSquare = (index) => (
  };
 
  const handleClick = async (index) => {
+
+  if(turn) return;
+  setTurn(true);
+
    let newBoard = [...board];
    updateBoard(index, "O", newBoard);
    const data = await makeMove(index, gameToken);
@@ -53,7 +60,7 @@ const renderSquare = (index) => (
     //  setResult(data.winner);
      return;
    }
-
+   setTurn(false);
  };
 
  useEffect(()=>{
@@ -85,6 +92,9 @@ const renderSquare = (index) => (
    [2, 4, 6],
  ];
 
+ useEffect(()=>{
+   setTurn(false);
+ },[result])
 
   return (
     <>
