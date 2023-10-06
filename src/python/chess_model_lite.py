@@ -99,15 +99,31 @@ def chess_move():
     game_token = request.json.get("game_token")
     if not game_token:
         return jsonify({"error": "Invalid game token"}), 400
+    
+    move_uci = request.json.get("move")
+    if not move_uci:
+        return jsonify({"error": "Move not provided"}), 400
+
+    # Handle pawn promotion
+    if len(move_uci) == 5:
+        promotion_piece = move_uci[4]
+        if promotion_piece not in ['q', 'r', 'b', 'n']:
+            return jsonify({"error": "Invalid promotion piece"}), 400
 
     if chessboard[game_token].turn:  # True for White, False for Black
-        move_uci = request.json.get("move")
-        if not move_uci:
-            return jsonify({"error": "Move not provided"}), 400
         move = chess.Move.from_uci(move_uci)
         if move not in chessboard[game_token].legal_moves:
             return jsonify({"error": "Illegal move"}), 400
         chessboard[game_token].push(move)
+
+    # if chessboard[game_token].turn:  # True for White, False for Black
+    #     move_uci = request.json.get("move")
+    #     if not move_uci:
+    #         return jsonify({"error": "Move not provided"}), 400
+    #     move = chess.Move.from_uci(move_uci)
+    #     if move not in chessboard[game_token].legal_moves:
+    #         return jsonify({"error": "Illegal move"}), 400
+    #     chessboard[game_token].push(move)
 
         # Black's turn (model's move)
         best_move = None
@@ -131,5 +147,6 @@ def chess_move():
 
 
 if __name__ == "__main__":
-     app.run(host="0.0.0.0",debug=True)
+    #  app.run(host="0.0.0.0",debug=True)
+     app.run(debug=True)
     

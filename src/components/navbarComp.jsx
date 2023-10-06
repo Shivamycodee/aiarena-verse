@@ -36,7 +36,7 @@ function NavbarComp() {
               width="50"
               height="50"
               className="d-inline-block align-top"
-              style={{ marginRight: 13 }}
+              style={{ marginRight: 5 }}
             />
             𝖺𝗂𝖠𝗋𝖾𝗇𝖺
           </Navbar.Brand>
@@ -47,7 +47,7 @@ function NavbarComp() {
           onClick={handleShow}
           className="me-2"
         >
-          <img alt="" src={UserButton} width="50" height="50" />
+          <img alt="" src={UserButton} width="50" height="50" style={{marginRight:"30px"}} />
         </Button>
       </Navbar>
 

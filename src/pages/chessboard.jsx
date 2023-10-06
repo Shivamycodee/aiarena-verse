@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Chess } from "chess.js";
 import { Chessboard } from "react-chessboard";
 import { makeChessMove, boardReset } from "../api/move";
@@ -7,16 +7,16 @@ import Piece from "../assets/transferPiece";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ChessBoard() {
-
   const [game, setGame] = useState(new Chess());
-  const [deadPiece,setDeadPiece] = useState([]); // [ {color: "w", type: "p"}, {color: "b", type: "p"}
-  const [chessToken,setChessToken] = useState(null);
+  const [deadPiece, setDeadPiece] = useState([]); // [ {color: "w", type: "p"}, {color: "b", type: "p"}
+  const [chessToken, setChessToken] = useState(null);
 
-  function makeAMove(move) {
+
+function makeAMove(move) {
     const result = game.move(move);
     setGame(new Chess(game.fen()));
-    return result; 
-  }
+    return result;
+}
 
 
   function HandleMoveAI(move) {
@@ -32,27 +32,33 @@ export default function ChessBoard() {
       makeAMove({ from: sourceSquare, to: targetSquare });
       getCapturedPieces();
     } else {
-      console.log("Move is not legal!",move);
+      console.log("Move is not legal!", move);
     }
   }
 
-
-
   async function checkIfGameOver() {
-
     if (game.isCheckmate()) {
       alert(game.turn() === "w" ? "Black wins!" : "White wins!");
       setChessToken(null);
       ResetChess();
       return true; // End the function if the game is over
+    } else if (game.isStalemate()) {
+      alert("Stalemate!");
+      setChessToken(null);
+      ResetChess();
+      return true;
+    } else if (game.isDraw()) {
+      alert("Draw!");
+      setChessToken(null);
+      ResetChess();
+      return true;
     }
-
   }
 
-  const DeadPieceStr = (piece)=>{
+  const DeadPieceStr = (piece) => {
     let pieceStr = `${piece.color}${piece.type}`;
     return pieceStr;
-  }
+  };
 
   const getCapturedPieces = () => {
     const history = game.history({ verbose: true });
@@ -68,20 +74,17 @@ export default function ChessBoard() {
       }
     });
 
-    for(let i =0;i<capturedPieces.length;i++)
+    for (let i = 0; i < capturedPieces.length; i++)
       capturedPiecesStr.push(DeadPieceStr(capturedPieces[i]));
 
-    if(deadPiece.length === 0)
-     setDeadPiece(capturedPiecesStr);
-  else
-    setDeadPiece([...deadPiece, ...capturedPiecesStr]);      
+    if (deadPiece.length === 0) setDeadPiece(capturedPiecesStr);
+    else setDeadPiece([...deadPiece, ...capturedPiecesStr]);
   };
 
-  async function onDrop(sourceSquare, targetSquare) {
-    if (sourceSquare === targetSquare) {
-      console.log("u fucked up");
-      return false;
-    } // Skip if the piece was dropped on its starting square
+  async function onDrop(sourceSquare, targetSquare, piece) {
+
+    let movedPiece = (game.get(sourceSquare)).type;
+   let retrunPiece = piece[1].toLowerCase();
 
     let moveObj = {
       from: sourceSquare,
@@ -90,58 +93,69 @@ export default function ChessBoard() {
 
     // If a pawn is being promoted, add the promotion field.
     if (
-      (game.turn() === "w" && targetSquare[1] === "8") ||
-      (game.turn() === "b" && targetSquare[1] === "1")
+      ((game.turn() === "w" && targetSquare[1] === "8") ||
+      (game.turn() === "b" && targetSquare[1] === "1")) &&
+      movedPiece === "p"
     ) {
-      moveObj.promotion = "q"; // Promote to queen
+      moveObj.promotion = retrunPiece;
     }
 
-    const move = makeAMove(moveObj);
-    console.info("⚠️⚠️",chessToken)
-    const MoveAI = await makeChessMove(`${sourceSquare}${targetSquare}`,chessToken);
-    checkIfGameOver(); // check for win...
+    let move = makeAMove(moveObj);
+    
+    const inputMoveStr = moveObj.promotion
+    ? `${moveObj.from}${moveObj.to}${moveObj.promotion}`
+    : `${moveObj.from}${moveObj.to}`;
+    
+    
 
+    const MoveAI = await makeChessMove(inputMoveStr, chessToken);
+
+    checkIfGameOver(); 
     HandleMoveAI(MoveAI);
-
-    checkIfGameOver(); // check for win...
+    checkIfGameOver(); 
 
     if (move === null) return false;
     return true;
   }
 
-useEffect(() => {
-  window.addEventListener("beforeunload", handleBeforeUnload);
-  return () => {
-  window.removeEventListener("beforeunload", handleBeforeUnload);
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    const token = uuidv4();
+    boardReset(chessToken, token);
+    setChessToken(token);
+  }, []);
+
+
+  const handleBeforeUnload = async (e) => {
+    e.preventDefault();
+    e.returnValue =
+      "All your data will be lost. Do you still want to close the window?";
   };
-}, []);
 
-useEffect(()=>{
-  const token = uuidv4();
-  boardReset(chessToken,token);
-  setChessToken(token);
-},[])
-
-const handleBeforeUnload = async (e) => {
-  e.preventDefault();
-  e.returnValue =
-    "All your data will be lost. Do you still want to close the window?";     
-};
-
-const ResetChess =  async() => {
-  setGame(new Chess());
-  const token = uuidv4();
-  const msg = await boardReset(chessToken,token);
-  setChessToken(token);
-  console.log(msg.message);
-  setDeadPiece([])
-}
+  const ResetChess = async () => {
+    setGame(new Chess());
+    const token = uuidv4();
+    const msg = await boardReset(chessToken, token);
+    setChessToken(token);
+    console.log(msg.message);
+    setDeadPiece([]);
+  };
 
   return (
     <div id="chess-container">
       <div id="basicBoard-cont">
-        <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+        <Chessboard
+          position={game.fen()}
+          onPieceDrop={onDrop}
+        />
       </div>
+
       <div id="chess-piecesHolder">
         <Button size="lg" variant="dark">
           {deadPiece.length !== 0 ? (
@@ -162,7 +176,11 @@ const ResetChess =  async() => {
           )}
         </Button>
 
-        <Button variant="outline-secondary" size="lg" onClick={()=>ResetChess()}>
+        <Button
+          variant="outline-secondary"
+          size="lg"
+          onClick={() => ResetChess()}
+        >
           Restart
         </Button>
 

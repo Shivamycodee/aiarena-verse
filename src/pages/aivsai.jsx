@@ -6,7 +6,10 @@ function AiVsAi() {
   return (
     <>
       <Lottie
-        style={{ width: "40%",margin:"auto" }}
+        style={{ 
+        width: "min(100%, 800px)",
+        margin:"auto" 
+      }}
         animationData={CommingSoon}
       />
     </>

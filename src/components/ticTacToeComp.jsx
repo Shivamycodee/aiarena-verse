@@ -99,7 +99,7 @@ const renderSquare = (index) => (
   return (
     <>
       {result === null ? (
-        <Container style={{ margin: "8% 0 0 22%", width: "50%" }}>
+        <Container id="tictactoeStruct">
           <Row className="board-row">
             {renderSquare(0)}
             {renderSquare(1)}

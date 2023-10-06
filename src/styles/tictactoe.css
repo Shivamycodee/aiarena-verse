@@ -38,3 +38,8 @@
   color: green;
   font-weight: bold;
 }
+
+#tictactoeStruct{
+  /* width: 60%; */
+  margin-top:10%;
+}
