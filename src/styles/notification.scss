@@ -17,10 +17,12 @@ html {
 
 body {
   display: grid;
-  overflow: hidden;
+  // overflow: hidden;
+  overflow-x: hidden;
   font-family: $font;
   text-transform: uppercase;
   text-align: center;
+  background: linear-gradient(360deg, rgb(227, 238, 255), rgb(126, 159, 242), rgb(243, 231, 233));
 }
 
 .container-notify {
@@ -247,4 +249,33 @@ button, .dot {
   100% {
     left: 25%;
   }
+}
+
+
+
+// scroll bar...
+
+/* Entire Scrollbar */
+body::-webkit-scrollbar {
+    width: 10px;  /* Width of the vertical scrollbar */
+    border-radius: 20px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+    // background: #ffffff;
+   background: linear-gradient(360deg, rgb(227, 238, 255), rgb(126, 159, 242), rgb(243, 231, 233));
+    
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+    background: #000000;
+        border-radius: 20px;
+
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+    background: #be1a1a;
 }
