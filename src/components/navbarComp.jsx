@@ -98,7 +98,7 @@ function NavbarComp() {
                     Deposit
                   </Button>
                   <Button onClick={() => Claim()} variant="outline-dark">
-                    Withdraw
+                    Withdraw (Claim)
                   </Button>
                 </p>
               </div>

@@ -1,15 +1,11 @@
 import React,{useContext,useState,useEffect} from 'react'
 import { useAccount } from "wagmi";
 import {ethers, providers} from 'ethers'
-import ABI from '../src/abi.json'
+import ABI from "../src/abi/ticketABI.json";
+import RPSABI from "../src/abi/rpsABI.json";
 
 
 const walletContext = React.createContext()
-
-if(window.ethereum){
-
-  
-}
 
 const getContract = () => {
 
@@ -24,6 +20,20 @@ const getContract = () => {
     );  
   return contract;
 }
+
+const getRPSContract = () => {
+  
+    if(!window.ethereum) return;
+  
+    const provider = new providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xc8e7D019Fd4983692D4746399943AD597EF79Af2",
+      RPSABI,
+      signer
+    );  
+    return contract;
+  }
 
 export default function WalletContextProvider({children}) {
 
@@ -103,6 +113,16 @@ const Play = async (result) => {
   }
 };
 
+const getMove = async ()=>{
+  try{
+    const contract = getRPSContract();
+    const res = await contract.Move();
+    return res[1];
+  }catch(e){
+    console.error("getMove failed: ", e);
+  }
+}
+
 
 useEffect(() => {
   if(window.ethereum){
@@ -125,6 +145,7 @@ useEffect(() => {
           Deposit,
           Claim,
           Play,
+          getMove,
         }}
       >
         {children}

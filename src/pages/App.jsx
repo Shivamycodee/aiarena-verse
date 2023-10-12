@@ -6,6 +6,8 @@ import TicTacToe from './tictactoe'
 import Chess from './chessboard'
 import AiVsAi from './aivsai';
 import NoPage from './nopage';
+import HumanWithHuman from './humanWithHuman';
+import RockPaperScissor from './rockPaperScissor'
 import "../index.css";
 
 function Home() {
@@ -20,13 +22,17 @@ function App() {
 
   return (
     <div id="full-body">
-      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="humanWithAi/tictactoe" element={<TicTacToe />} />
           <Route path="humanWithAi/chessboard" element={<Chess />} />
           <Route path="humanWithAi" element={<HumanWithAI />} />
+          <Route
+            path="humanWithHuman/rockPaperScissor"
+            element={<RockPaperScissor />}
+          />
+          <Route path="humanWithHuman" element={<HumanWithHuman />} />
           <Route path="aivsai" element={<AiVsAi />} />
           <Route path="*" element={<NoPage />} />
         </Routes>

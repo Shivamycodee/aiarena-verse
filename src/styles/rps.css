@@ -1,0 +1,75 @@
+#rps-board{
+    display: flex;
+    flex-direction: column;
+    /* background: white; */
+    margin: 2% 1% 0 1%;
+    padding:2%;
+    /* align-items: center; */    
+}
+
+#rps-image-holder{
+    /* background-color: rgb(0, 0, 0); */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+.rps-img {
+  animation: moveUpDown 1s infinite;
+  transition: transform 0.3s; 
+  cursor: pointer;
+  margin-left:3%;
+}
+
+#intermidiate-pos{
+  /* background-color: black; */
+  animation: moveUpDown 1s infinite;
+  transition: transform 0.3s; 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding:5%;
+}
+
+.playHolder-cont{
+    /* background-color: rgb(0, 0, 0); */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:10%;
+}
+
+#rps-image-holder h4{
+  margin:auto;
+}
+
+.rps-img:hover {
+  animation:none;
+  transform: scale(1.15);
+}
+
+
+
+#rock {
+  animation-delay: 0.2s;
+
+}
+
+#paper {
+  animation-delay: 0.4s;
+}
+
+#scissors {
+  animation-delay: 0.6s;
+}
