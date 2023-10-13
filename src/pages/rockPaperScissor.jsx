@@ -5,6 +5,7 @@ import RPSImg from "../assets/rps/rpsImage";
 import { useGlobalContext } from "../../context/walletContext";
 
 export default function RockPaperScissor() {
+
   const { getMove } = useGlobalContext();
 
   let arr = ["rock", "paper", "scissors"];
@@ -49,7 +50,7 @@ export default function RockPaperScissor() {
   };
 
   useEffect(() => {
-    if (userChoice && gameState === "end") {
+    if (userChoice) {
       const timer = setTimeout(() => {
         setShowInter(false);
       }, 2000);
