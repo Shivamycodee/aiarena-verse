@@ -3,6 +3,7 @@ import { useAccount } from "wagmi";
 import {ethers, providers} from 'ethers'
 import ABI from "../src/abi/ticketABI.json";
 import RPSABI from "../src/abi/rpsABI.json";
+import NFTAbi from '../src/abi/NFTABI.json'
 
 
 const walletContext = React.createContext()
@@ -38,10 +39,9 @@ const getRPSContract = () => {
 export default function WalletContextProvider({children}) {
 
   const { address, isDisconnected } = useAccount();
-  
-  const [deposited, setDeposited] = useState("non");
-  const [tickets, setTickets] = useState("non-t");
-  const [withdrawableBalance, setWithdrawableBalance] = useState("non-w");
+  const [deposited, setDeposited] = useState(0);
+  const [tickets, setTickets] = useState(0);
+  const [withdrawableBalance, setWithdrawableBalance] = useState(0);
   
 
   const getUserDeposit = async () => {
@@ -83,7 +83,7 @@ const Deposit = async () => {
   try {
 
     const contract = getContract();
-    const amt = ethers.utils.parseEther("2");
+    const amt = ethers.utils.parseEther("0.01");
     const tx = await contract.Deposit(amt, {
       value: amt, 
     });
@@ -123,6 +123,53 @@ const getMove = async ()=>{
   }
 }
 
+const addNFT = async () => {
+  try {
+     const provider = new providers.Web3Provider(window.ethereum);
+     const signer = provider.getSigner();
+     const contract = new ethers.Contract(
+       "0x7E55a3c33953B0e9A2fD112e37a5ecf77Ce5166e",
+       NFTAbi,
+       signer
+     );
+
+    const tokenMetadata = {
+      type: "ERC721",
+      options: {
+        address: "0x7E55a3c33953B0e9A2fD112e37a5ecf77Ce5166e",
+        symbol: "VTX", // Replace with your NFT's symbol
+        decimals: 0,
+        image: "https://nftstorage.link/ipfs/bafybeifgcy4gm2q6l2ejfjarzdlcgflsmrk3lqdtht3drwjkowbbtcqkeq",
+          // "http://theactivephotographer.com/wp-content/uploads/2012/07/TAP_Ad_300x300.jpg",
+        tokenId: "2",
+        name: "VITNIX-NFT",
+        description: "just a cool space nft",
+      },
+    };
+
+      try {
+        // Use MetaMask's `wallet_watchAsset` method
+        const wasAdded = await ethereum.request({
+          method: "wallet_watchAsset",
+          params: tokenMetadata,
+        });
+
+        if (wasAdded) {
+          console.log("NFT successfully added to MetaMask");
+        } else {
+          console.log("User chose not to add NFT to MetaMask");
+        }
+      } catch (error) {
+        console.error("Error adding NFT to MetaMask", error);
+      }
+
+
+  
+  } catch (e) {
+    console.error("addNFT failed: ", e);
+  }
+};
+
 
 useEffect(() => {
   if(window.ethereum){
@@ -146,6 +193,7 @@ useEffect(() => {
           Claim,
           Play,
           getMove,
+          addNFT,
         }}
       >
         {children}

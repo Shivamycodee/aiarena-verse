@@ -95,3 +95,26 @@ export const boardReset = async (old_game_token, game_token) => {
     return null;
   }
 };
+
+
+export const getAnswer = async (input_text) => {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/get_answer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        input_text: input_text,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (error) {
+    console.error("An error occurred while making a move:", error);
+    return null;
+  }
+};

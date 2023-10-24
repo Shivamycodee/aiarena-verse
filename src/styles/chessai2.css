@@ -1,0 +1,98 @@
+   /* drive seciton css  */
+
+     .drive-holder{
+    display: flex;
+    justify-content: space-around;
+    padding: 80px;
+    column-gap: 10px;
+    margin-top: 2%;
+
+  }
+
+   
+  .fileUpload{
+    /* border: 1px solid white; */
+    background-image: linear-gradient(360deg, rgb(227, 238, 255), rgb(126, 159, 242), rgb(243, 231, 233));
+    width:100%;
+    height: fit-content;
+    text-align: center;
+    max-width: 40vw;
+    border-radius: 10px;
+  }
+
+  #upSection{
+    padding: 30px; 
+    display: flex;
+    flex-direction: column ;
+  }
+
+
+  #upTitle p{
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: large;
+  }
+
+
+  #upInput{
+    border: 1px dashed gray;
+    border-radius: 7px;
+    align-self: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    width:100%;
+  }
+
+  #upInput img{
+    width: 150px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+
+  #upInput input{
+    margin: 0px 0 0px 70px ;
+    cursor:pointer;
+  }
+
+  #upBtn button{
+    width:100%;
+    margin-bottom: 2px;
+  }
+
+.sp {
+  background:linear-gradient(360deg, rgb(227, 238, 255), rgb(126, 159, 242), rgb(243, 231, 233));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 20px !important;
+  display: block;
+}
+.rainbow-hover:active {
+  transition: 0.3s;
+  transform: scale(0.93);
+}
+
+
+ .rainbow-hover {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff7576;
+  background-color: #2B3044;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  position: relative;
+  line-height: 24px;
+  border-radius: 9px;
+  box-shadow: 0px 1px 2px #2B3044,
+    0px 4px 16px #2B3044;
+  transform-style: preserve-3d;
+  transform: scale(var(--s, 1)) perspective(600px)
+    rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  perspective: 600px;
+  transition: transform 0.1s;
+}

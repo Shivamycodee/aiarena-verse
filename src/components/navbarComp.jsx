@@ -14,8 +14,15 @@ import { useGlobalContext } from "../../context/walletContext";
 function NavbarComp() {
   const [show, setShow] = useState(false);
 
-  const { address, deposited, tickets, withdrawableBalance, Deposit, Claim } =
-    useGlobalContext();
+  const {
+    address,
+    deposited,
+    tickets,
+    withdrawableBalance,
+    Deposit,
+    Claim,
+    addNFT,
+  } = useGlobalContext();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -47,7 +54,13 @@ function NavbarComp() {
           onClick={handleShow}
           className="me-2"
         >
-          <img alt="" src={UserButton} width="50" height="50" style={{marginRight:"30px"}} />
+          <img
+            alt=""
+            src={UserButton}
+            width="50"
+            height="50"
+            style={{ marginRight: "30px" }}
+          />
         </Button>
       </Navbar>
 
@@ -62,7 +75,7 @@ function NavbarComp() {
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <code style={{color:"black"}}>User Detail</code>
+            <code style={{ color: "black" }}>User Detail</code>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
@@ -75,7 +88,7 @@ function NavbarComp() {
               >
                 <div className="card__icon">
                   <Badge className="icon-badge" bg="black">
-                    address.slice(0, 4) + "..." + address.slice(38)
+                   { address.slice(0, 4)}...{ address.slice(38)}
                   </Badge>
 
                   <Badge className="icon-badge" bg="black">
@@ -104,7 +117,9 @@ function NavbarComp() {
               </div>
             </>
           ) : (
-            <div className="text" style={{}}>Connect Wallet</div>
+            <div className="text" style={{}}>
+              Connect Wallet
+            </div>
           )}
         </Offcanvas.Body>
       </Offcanvas>
