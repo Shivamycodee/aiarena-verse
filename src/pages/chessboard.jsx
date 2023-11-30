@@ -148,61 +148,70 @@ function makeAMove(move) {
   };
 
   return (
-    <div id="chess-container">
-      <div id="basicBoard-cont">
-        <Chessboard
-          position={game.fen()}
-          onPieceDrop={onDrop}
-        />
+    <>
+      <div class="marquee">
+        <div>
+          <div>
+            Quick heads-up, gamers! 🎮 Our AWS lightsail needs a short nap (and
+            my wallet a refill 💸). Game's on a tiny break until payday swoops
+            in! 🦸‍♂️ Sorry for the pause, we'll be back soon! 🚀
+          </div>
+        </div>
       </div>
 
-      <div id="chess-piecesHolder">
-        <Button size="lg" variant="dark">
-          {deadPiece.length !== 0 ? (
-            deadPiece.map(
-              (piece, index) =>
-                piece.includes("w") && (
-                  <img
-                    key={index}
-                    alt=""
-                    src={Piece[piece]}
-                    width="30"
-                    height="30"
-                  />
-                )
-            )
-          ) : (
-            <code style={{ color: "white" }}>Dead White Pieces</code>
-          )}
-        </Button>
+      <div id="chess-container">
+        <div id="basicBoard-cont">
+          <Chessboard position={game.fen()} onPieceDrop={onDrop} />
+        </div>
 
-        <Button
-          variant="outline-secondary"
-          size="lg"
-          onClick={() => ResetChess()}
-        >
-          Restart
-        </Button>
+        <div id="chess-piecesHolder">
+          <Button size="lg" variant="dark">
+            {deadPiece.length !== 0 ? (
+              deadPiece.map(
+                (piece, index) =>
+                  piece.includes("w") && (
+                    <img
+                      key={index}
+                      alt=""
+                      src={Piece[piece]}
+                      width="30"
+                      height="30"
+                    />
+                  )
+              )
+            ) : (
+              <code style={{ color: "white" }}>Dead White Pieces</code>
+            )}
+          </Button>
 
-        <Button size="lg" variant="light">
-          {deadPiece.length !== 0 ? (
-            deadPiece.map(
-              (piece, index) =>
-                piece[0] === "b" && (
-                  <img
-                    key={index}
-                    alt=""
-                    src={Piece[piece]}
-                    width="30"
-                    height="30"
-                  />
-                )
-            )
-          ) : (
-            <code style={{ color: "black" }}>Dead Black Pieces</code>
-          )}
-        </Button>
+          <Button
+            variant="outline-secondary"
+            size="lg"
+            onClick={() => ResetChess()}
+          >
+            Restart
+          </Button>
+
+          <Button size="lg" variant="light">
+            {deadPiece.length !== 0 ? (
+              deadPiece.map(
+                (piece, index) =>
+                  piece[0] === "b" && (
+                    <img
+                      key={index}
+                      alt=""
+                      src={Piece[piece]}
+                      width="30"
+                      height="30"
+                    />
+                  )
+              )
+            ) : (
+              <code style={{ color: "black" }}>Dead Black Pieces</code>
+            )}
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
