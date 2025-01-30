@@ -15,7 +15,7 @@ const getContract = () => {
   const provider = new providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const contract = new ethers.Contract(
-    "0x0dF00373c8Be49608111D7B886eD109336575ffE",
+    "0x00Be404d7594e4b6F76cf2eF36df319EB9f3628A", // aiarena
     ABI,
     signer
     );  
@@ -29,7 +29,7 @@ const getRPSContract = () => {
     const provider = new providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0xc8e7D019Fd4983692D4746399943AD597EF79Af2",
+      "0xdF875883a8346c267864496Efc820aa41FA3BcAD",
       RPSABI,
       signer
     );  
@@ -116,11 +116,12 @@ const Play = async (result) => {
 const getMove = async ()=>{
   try{
     const contract = getRPSContract();
-    const res = await contract.Move();
-    return res[1];
+    let res = await contract.Move();
+    res = parseInt(res);
+    return res;
   }catch(e){
     console.error("getMove failed: ", e);
-  }
+  } 
 }
 
 const addNFT = async () => {

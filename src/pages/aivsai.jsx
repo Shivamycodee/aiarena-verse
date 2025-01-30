@@ -12,6 +12,11 @@ function AiVsAi() {
       
   return (
     <>
+
+<div class="marquee" style={{justifySelf:'center'}} >
+          work in progress... 🚀
+          </div>
+
       <div className="card-container">
         <div onClick={() => navigate("chessai2")} className="card">
           <Lottie

@@ -149,16 +149,6 @@ function makeAMove(move) {
 
   return (
     <>
-      <div class="marquee">
-        <div>
-          <div>
-            Quick heads-up, gamers! 🎮 Our AWS lightsail needs a short nap (and
-            my wallet a refill 💸). Game's on a tiny break until payday swoops
-            in! 🦸‍♂️ Sorry for the pause, we'll be back soon! 🚀
-          </div>
-        </div>
-      </div>
-
       <div id="chess-container">
         <div id="basicBoard-cont">
           <Chessboard position={game.fen()} onPieceDrop={onDrop} />

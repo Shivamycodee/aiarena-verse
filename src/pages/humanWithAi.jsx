@@ -12,6 +12,14 @@ function HumanVsAi() {
 
   return (
     <>
+
+<div class="marquee">
+            Quick heads-up, gamers! 🎮 Our AWS lightsail needs a short nap (and
+            my wallet a refill 💸). Game's on a tiny break until payday swoops
+            in! 🦸‍♂️ Sorry for the pause, we'll be back soon! 🚀
+          </div>
+
+
       <div className="card-container">
         <div onClick={() => navigate("tictactoe")} className="card">
           <Lottie

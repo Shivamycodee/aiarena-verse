@@ -19,12 +19,12 @@ import {
   arbitrum,
   base,
   zora,
-  polygonMumbai,
+  bscTestnet,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, polygonMumbai,optimism, arbitrum, base, zora],
+  [mainnet, polygon, bscTestnet,optimism, arbitrum, base, zora],
   [publicProvider()]
 );
 

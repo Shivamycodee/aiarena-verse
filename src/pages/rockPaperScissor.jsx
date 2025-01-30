@@ -19,7 +19,7 @@ export default function RockPaperScissor() {
   const handleHandClick = async (event) => {
     setUserChoice(event.target.id);
     let val = await getMove();
-    setComputerChoice(arr[val - 1]);
+    setComputerChoice(arr[val]);
     setGameState("end");
   };
 
